@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: Release tag, for example v1.0.1
+        description: Release tag, for example v1.0.2
         required: true
-        default: v1.0.1
+        default: v1.0.2
   push:
     tags:
       - "v*"
@@ -32,8 +32,15 @@ jobs:
           - name: macOS Intel
             os: macos-15-intel
             slug: macos-intel
+            expected_arch: x86_64
             archive: Fruit-Slash-macOS-Intel.zip
             checksum: Fruit-Slash-macOS-Intel.zip.sha256
+          - name: macOS Apple Silicon
+            os: macos-15
+            slug: macos-arm64
+            expected_arch: arm64
+            archive: Fruit-Slash-macOS-Apple-Silicon.zip
+            checksum: Fruit-Slash-macOS-Apple-Silicon.zip.sha256
           - name: Linux x64
             os: ubuntu-24.04
             slug: linux-x64
@@ -82,6 +89,8 @@ jobs:
             --name "Fruit Slash" \
             --osx-bundle-identifier "io.github.gaozihan3g.fruit-slash" \
             main.py
+          lipo -archs "dist/Fruit Slash.app/Contents/MacOS/Fruit Slash" \
+            | grep -qw "${{ matrix.expected_arch }}"
           SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy \
             "dist/Fruit Slash.app/Contents/MacOS/Fruit Slash" --smoke-test
           ditto -c -k --sequesterRsrc --keepParent \
@@ -138,5 +147,5 @@ jobs:
               --repo "$GITHUB_REPOSITORY" \
               --target "$GITHUB_SHA" \
               --title "Fruit Slash $RELEASE_TAG" \
-              --notes "Unsigned desktop builds for Windows x64, macOS Intel, and Linux x64. SHA-256 checksum files are included for every download."
+              --notes "Unsigned desktop builds for Windows x64, macOS Intel, macOS Apple Silicon, and Linux x64. SHA-256 checksum files are included for every download."
           fi
