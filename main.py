@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import math
+import os
 import random
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -40,6 +42,19 @@ def segment_circle_hit(a: Vector2, b: Vector2, center: Vector2, radius: float) -
 
 def lighten(color: tuple[int, int, int], amount: int) -> tuple[int, int, int]:
     return tuple(min(255, c + amount) for c in color)
+
+
+def user_data_file(filename: str) -> Path:
+    """Return a writable per-user data path on every supported platform."""
+    if sys.platform == "win32":
+        root = Path(os.environ.get("LOCALAPPDATA", Path.home() / "AppData" / "Local"))
+        directory = root / "FruitSlash"
+    elif sys.platform == "darwin":
+        directory = Path.home() / "Library" / "Application Support" / "FruitSlash"
+    else:
+        root = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local" / "share"))
+        directory = root / "fruit-slash"
+    return directory / filename
 
 
 class Fonts:
@@ -158,6 +173,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.fonts = Fonts()
         self.state = "menu"
+        self.highscore_path = user_data_file("highscore.txt")
         self.best = self.load_best()
         self.reset()
 
@@ -169,15 +185,15 @@ class Game:
         return chinese if self.zh else english
 
     def load_best(self) -> int:
-        path = Path(__file__).with_name("highscore.txt")
         try:
-            return int(path.read_text().strip())
+            return int(self.highscore_path.read_text().strip())
         except (OSError, ValueError):
             return 0
 
     def save_best(self) -> None:
         try:
-            Path(__file__).with_name("highscore.txt").write_text(str(self.best))
+            self.highscore_path.parent.mkdir(parents=True, exist_ok=True)
+            self.highscore_path.write_text(str(self.best))
         except OSError:
             pass
 
@@ -420,5 +436,22 @@ class Game:
         pygame.quit()
 
 
+def run_smoke_test() -> None:
+    """Start the packaged runtime without opening a real window, then exit."""
+    os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
+    os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
+    game = Game()
+    game.start()
+    for _ in range(10):
+        game.update(1 / FPS)
+    game.draw()
+    assert game.state == "playing"
+    pygame.quit()
+    print("Fruit Slash smoke test passed")
+
+
 if __name__ == "__main__":
-    Game().run()
+    if "--smoke-test" in sys.argv:
+        run_smoke_test()
+    else:
+        Game().run()

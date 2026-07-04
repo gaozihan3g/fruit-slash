@@ -4,6 +4,14 @@
 
 🌐 [查看在线作品介绍](https://gaozihan3g.github.io/fruit-slash/)
 
+## 下载
+
+- [Windows x64](https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-Windows-x64.zip)
+- [macOS Intel](https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-macOS-Intel.zip)（Apple Silicon 可通过 Rosetta 运行）
+- [Linux x64](https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-Linux-x64.tar.gz)
+
+当前发布包未使用商业开发者证书签名，因此 Windows SmartScreen 或 macOS Gatekeeper 可能在首次运行时显示安全提示。
+
 ## 运行
 
 ```bash
@@ -20,4 +28,4 @@ python3 main.py
 - `Enter` / `Space`：开始或重新开始
 - `Esc`：退出
 
-最高分会自动保存在同目录下的 `highscore.txt` 中。
+最高分会自动保存在当前系统的用户数据目录中。
