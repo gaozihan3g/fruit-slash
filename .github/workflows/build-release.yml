@@ -1,6 +1,9 @@
 name: Build desktop releases
 
 on:
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       version:
@@ -108,6 +111,7 @@ jobs:
 
   release:
     name: Publish GitHub release
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-24.04
     env:
