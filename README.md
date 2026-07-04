@@ -7,7 +7,8 @@
 ## 下载
 
 - [Windows x64](https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-Windows-x64.zip)
-- [macOS Intel](https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-macOS-Intel.zip)（Apple Silicon 可通过 Rosetta 运行）
+- [macOS Apple Silicon](https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-macOS-Apple-Silicon.zip)（Apple M 系列芯片）
+- [macOS Intel](https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-macOS-Intel.zip)
 - [Linux x64](https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-Linux-x64.tar.gz)
 
 当前发布包未使用商业开发者证书签名，因此 Windows SmartScreen 或 macOS Gatekeeper 可能在首次运行时显示安全提示。
