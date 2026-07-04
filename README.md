@@ -2,6 +2,8 @@
 
 一个使用 Python 和 Pygame 编写的水果切割小游戏。美术、粒子和动画均由代码绘制，不需要额外素材。
 
+🌐 [查看在线作品介绍](https://gaozihan3g.github.io/fruit-slash/)
+
 ## 运行
 
 ```bash

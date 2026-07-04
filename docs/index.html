@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="水果快斩——使用 Python 与 Pygame 制作的水果切割小游戏。" />
+    <meta name="theme-color" content="#120c18" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍊%3C/text%3E%3C/svg%3E" />
+    <title>水果快斩 · Fruit Slash</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="返回首页">
+        <span class="brand-mark">果</span>
+        <span>FRUIT SLASH</span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="#features">玩法</a>
+        <a href="#build">实现</a>
+        <a class="nav-github" href="https://github.com/gaozihan3g/fruit-slash">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span></span> Python / Pygame 原创小游戏</div>
+          <h1>一刀划过，<br /><em>果汁四溅。</em></h1>
+          <p class="hero-lead">瞄准、挥刀、连击——在抛物线的最高点切开水果，同时避开混入其中的炸弹。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/gaozihan3g/fruit-slash">查看源代码 <span>↗</span></a>
+            <a class="button button-ghost" href="#quickstart">本地运行 <span>↓</span></a>
+          </div>
+          <div class="mini-stats" aria-label="项目概览">
+            <div><strong>5</strong><span>种水果</span></div>
+            <div><strong>60</strong><span>FPS</span></div>
+            <div><strong>0</strong><span>外部素材</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="game-window">
+            <div class="window-bar">
+              <div class="traffic"><i></i><i></i><i></i></div>
+              <span>fruit_slash.py</span>
+              <span class="live-dot">PLAYING</span>
+            </div>
+            <img src="assets/gameplay.png" alt="水果快斩游戏画面，水果正在空中飞起" />
+          </div>
+          <div class="floating-card card-combo"><b>+14</b><span>连击得分</span></div>
+          <div class="floating-card card-warning"><b>!</b><span>小心炸弹</span></div>
+        </div>
+      </section>
+
+      <section class="marquee" aria-label="游戏特色">
+        <div>
+          <span>SLICE</span><i>✦</i><span>COMBO</span><i>✦</i><span>DODGE</span><i>✦</i><span>SCORE</span><i>✦</i>
+          <span>SLICE</span><i>✦</i><span>COMBO</span><i>✦</i><span>DODGE</span><i>✦</i><span>SCORE</span><i>✦</i>
+        </div>
+      </section>
+
+      <section class="features section-shell" id="features">
+        <div class="section-heading reveal">
+          <span class="section-number">01 / PLAY</span>
+          <h2>简单上手，<br />越切越上头。</h2>
+          <p>操作只有一件事：按住鼠标挥刀。真正的挑战，是在速度越来越快时保持判断。</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card feature-main reveal">
+            <div class="fruit-illustration" aria-hidden="true"><span></span><i></i></div>
+            <div>
+              <span class="card-index">01</span>
+              <h3>真实切割反馈</h3>
+              <p>刀光跟随鼠标轨迹。命中后水果分成两半，果汁粒子沿挥刀方向飞散。</p>
+            </div>
+          </article>
+          <article class="feature-card reveal">
+            <div class="icon combo-icon">×3</div>
+            <span class="card-index">02</span>
+            <h3>连击加分</h3>
+            <p>在短时间内连续命中，分数会逐刀增长。节奏越稳，回报越高。</p>
+          </article>
+          <article class="feature-card danger-card reveal">
+            <div class="icon bomb-icon"><span></span></div>
+            <span class="card-index">03</span>
+            <h3>风险与取舍</h3>
+            <p>漏掉水果会损失生命，误切炸弹则立即结束。不是每一刀都值得挥出。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="build section-shell" id="build">
+        <div class="build-copy reveal">
+          <span class="section-number">02 / UNDER THE HOOD</span>
+          <h2>没有素材包，<br />每一帧都由代码绘制。</h2>
+          <p>水果、阴影、刀光、粒子与 UI 全部使用 Pygame 的绘图 API 生成。项目体积轻，结构直接，很适合用来学习小游戏中的物理、碰撞和状态管理。</p>
+          <ul class="tech-list">
+            <li><span>01</span><b>Vector2 运动</b><small>重力、速度与抛物线</small></li>
+            <li><span>02</span><b>线段圆碰撞</b><small>高速挥刀也不漏判</small></li>
+            <li><span>03</span><b>粒子系统</b><small>果汁、爆炸与衰减动画</small></li>
+          </ul>
+        </div>
+        <div class="code-panel reveal" aria-label="切割检测代码示例">
+          <div class="code-title"><span>main.py</span><span>PYTHON</span></div>
+          <pre><code><span class="purple">def</span> <span class="yellow">segment_circle_hit</span>(a, b, center, radius):
+    ab = b - a
+    <span class="purple">if</span> ab.length_squared() == <span class="orange">0</span>:
+        <span class="purple">return</span> center.distance_to(a) &lt;= radius
+
+    t = <span class="yellow">clamp</span>(
+        (center - a).dot(ab) / ab.length_squared(),
+        <span class="orange">0</span>, <span class="orange">1</span>
+    )
+    <span class="purple">return</span> center.distance_to(a + ab * t) &lt;= radius</code></pre>
+          <div class="code-caption"><span>精确命中检测</span><b>12 lines</b></div>
+        </div>
+      </section>
+
+      <section class="quickstart section-shell" id="quickstart">
+        <div class="quickstart-card reveal">
+          <div>
+            <span class="section-number">03 / YOUR TURN</span>
+            <h2>两行命令，<br />开始挥刀。</h2>
+          </div>
+          <div class="terminal">
+            <div><span>$</span> pip install -r requirements.txt</div>
+            <div><span>$</span> python3 main.py</div>
+          </div>
+          <button class="copy-button" type="button" data-copy="pip install -r requirements.txt&#10;python3 main.py">复制命令</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="section-shell footer-inner">
+        <div><span class="brand-mark">果</span><b>FRUIT SLASH</b></div>
+        <p>Built with Python, Pygame & a sharp cursor.</p>
+        <a href="https://github.com/gaozihan3g/fruit-slash">GitHub ↗</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
