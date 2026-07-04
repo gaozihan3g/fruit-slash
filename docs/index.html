@@ -22,6 +22,7 @@
       <nav aria-label="主导航">
         <a href="#features">玩法</a>
         <a href="#build">实现</a>
+        <a href="#downloads">下载</a>
         <a class="nav-github" href="https://github.com/gaozihan3g/fruit-slash">GitHub ↗</a>
       </nav>
     </header>
@@ -33,8 +34,8 @@
           <h1>一刀划过，<br /><em>果汁四溅。</em></h1>
           <p class="hero-lead">瞄准、挥刀、连击——在抛物线的最高点切开水果，同时避开混入其中的炸弹。</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="https://github.com/gaozihan3g/fruit-slash">查看源代码 <span>↗</span></a>
-            <a class="button button-ghost" href="#quickstart">本地运行 <span>↓</span></a>
+            <a class="button button-primary" href="#downloads">下载游戏 <span>↓</span></a>
+            <a class="button button-ghost" href="https://github.com/gaozihan3g/fruit-slash">查看源代码 <span>↗</span></a>
           </div>
           <div class="mini-stats" aria-label="项目概览">
             <div><strong>5</strong><span>种水果</span></div>
@@ -123,11 +124,69 @@
         </div>
       </section>
 
+      <section class="downloads section-shell" id="downloads">
+        <div class="downloads-heading reveal">
+          <div>
+            <span class="section-number">03 / DOWNLOAD</span>
+            <h2>选好平台，<br />直接开斩。</h2>
+          </div>
+          <p>无需安装 Python 或 Pygame。下载对应压缩包，解压后即可运行。</p>
+        </div>
+
+        <div class="download-grid">
+          <a class="download-card featured reveal" href="https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-Windows-x64.zip">
+            <span class="platform-icon windows-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="download-copy">
+              <small>WINDOWS · X64</small>
+              <strong>Windows 版</strong>
+              <code>Fruit-Slash-Windows-x64.zip</code>
+            </span>
+            <span class="download-arrow" aria-hidden="true">↓</span>
+          </a>
+
+          <a class="download-card reveal" href="https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-macOS-Apple-Silicon.zip">
+            <span class="platform-icon chip-icon" aria-hidden="true">M</span>
+            <span class="download-copy">
+              <small>MACOS · APPLE SILICON</small>
+              <strong>Mac M 系列版</strong>
+              <code>Fruit-Slash-macOS-Apple-Silicon.zip</code>
+            </span>
+            <span class="download-arrow" aria-hidden="true">↓</span>
+          </a>
+
+          <a class="download-card reveal" href="https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-macOS-Intel.zip">
+            <span class="platform-icon intel-icon" aria-hidden="true">x64</span>
+            <span class="download-copy">
+              <small>MACOS · INTEL</small>
+              <strong>Mac Intel 版</strong>
+              <code>Fruit-Slash-macOS-Intel.zip</code>
+            </span>
+            <span class="download-arrow" aria-hidden="true">↓</span>
+          </a>
+
+          <a class="download-card reveal" href="https://github.com/gaozihan3g/fruit-slash/releases/latest/download/Fruit-Slash-Linux-x64.tar.gz">
+            <span class="platform-icon linux-icon" aria-hidden="true">&gt;_</span>
+            <span class="download-copy">
+              <small>LINUX · X64</small>
+              <strong>Linux 版</strong>
+              <code>Fruit-Slash-Linux-x64.tar.gz</code>
+            </span>
+            <span class="download-arrow" aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <div class="release-note reveal">
+          <span>安全提示</span>
+          <p>当前版本未进行商业代码签名，Windows SmartScreen 或 macOS Gatekeeper 可能显示安全提醒。</p>
+          <a href="https://github.com/gaozihan3g/fruit-slash/releases/tag/v1.0.2">查看 v1.0.2 与 SHA-256 校验文件 ↗</a>
+        </div>
+      </section>
+
       <section class="quickstart section-shell" id="quickstart">
         <div class="quickstart-card reveal">
           <div>
-            <span class="section-number">03 / YOUR TURN</span>
-            <h2>两行命令，<br />开始挥刀。</h2>
+            <span class="section-number">04 / FROM SOURCE</span>
+            <h2>也可以从源码<br />开始挥刀。</h2>
           </div>
           <div class="terminal">
             <div><span>$</span> pip install -r requirements.txt</div>
@@ -142,7 +201,7 @@
       <div class="section-shell footer-inner">
         <div><span class="brand-mark">果</span><b>FRUIT SLASH</b></div>
         <p>Built with Python, Pygame & a sharp cursor.</p>
-        <a href="https://github.com/gaozihan3g/fruit-slash">GitHub ↗</a>
+        <a href="https://github.com/gaozihan3g/fruit-slash/releases/latest">最新版本 ↗</a>
       </div>
     </footer>
 
