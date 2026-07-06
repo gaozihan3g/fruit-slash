@@ -128,3 +128,5 @@ SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 main.py --smoke-test
 ## 许可证
 
 本项目采用 [MIT License](LICENSE)。
+
+haha
