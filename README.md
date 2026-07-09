@@ -68,7 +68,7 @@ python3 main.py
 - 使用 `pygame.Vector2` 处理重力、速度、旋转和抛物线运动。
 - 使用“线段—圆”相交检测处理连续鼠标轨迹，而不是只检测单个光标点。
 - 使用轻量粒子系统实现果汁、爆炸、闪光和屏幕震动反馈。
-- 游戏状态分为菜单、游玩和结束三个阶段，代码集中、便于学习与修改。
+- 游戏状态分为菜单、游玩和结束三个阶段，代码按配置、实体、渲染、输入和存档等职责拆分，便于学习与修改。
 - PyInstaller 为四种桌面目标生成可直接运行的软件包。
 - GitHub Actions 会在每次 PR 中执行四平台构建与无窗口 smoke test；推送版本标签时自动发布 Release 和 SHA-256 文件。
 
@@ -84,8 +84,18 @@ fruit-slash/
 │   └── style.css
 ├── CHANGELOG.md                         # 版本更新日志
 ├── CONTRIBUTING.md                      # 贡献指南
+├── fruit_slash/                         # 模块化后的游戏源码
+│   ├── config.py                        # 窗口、帧率、重力、水果配置
+│   ├── entities.py                      # 水果、炸弹、粒子、切半水果
+│   ├── fonts.py                         # 字体发现与文本字体创建
+│   ├── game.py                          # 游戏状态、规则和主循环协调
+│   ├── input.py                         # 键盘与鼠标事件处理
+│   ├── renderer.py                      # 背景、HUD、菜单和特效绘制
+│   ├── smoke.py                         # 无窗口 smoke test
+│   ├── storage.py                       # 用户数据路径与最高分读写
+│   └── utils.py                         # 碰撞、颜色和数值工具
 ├── LICENSE                              # MIT License
-├── main.py                              # 游戏入口与全部玩法逻辑
+├── main.py                              # 兼容原运行方式的游戏入口
 ├── requirements.txt                     # 运行依赖
 └── requirements-build.txt               # 打包依赖
 ```
@@ -101,7 +111,7 @@ python3 -m pip install -r requirements.txt -r requirements-build.txt
 执行与 GitHub Actions 相同的基础检查：
 
 ```bash
-python3 -m compileall -q main.py
+python3 -m compileall -q main.py fruit_slash
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 main.py --smoke-test
 ```
 

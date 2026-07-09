@@ -37,7 +37,7 @@
 至少执行以下检查：
 
 ```bash
-python3 -m compileall -q main.py
+python3 -m compileall -q main.py fruit_slash
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 main.py --smoke-test
 ```
 
